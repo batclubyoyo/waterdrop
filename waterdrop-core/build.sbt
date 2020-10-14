@@ -1,9 +1,8 @@
-name         := "Waterdrop-core"
-version      := "1.4.2"
+name := "Waterdrop-core"
+version := "1.4.2"
 organization := "io.github.interestinglab.waterdrop"
 
 scalaVersion := "2.11.8"
-
 
 val sparkVersion = "2.4.0"
 
@@ -37,15 +36,13 @@ providedDeps match {
 unmanagedJars in Compile += file("lib/config-1.3.3-SNAPSHOT.jar")
 
 libraryDependencies ++= Seq(
-
   // ------ Spark Dependencies ---------------------------------
   // spark distribution doesn't provide this dependency.
   "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion
-    exclude("org.spark-project.spark", "unused")
-    exclude("net.jpountz.lz4", "unused"),
+    exclude ("org.spark-project.spark", "unused")
+    exclude ("net.jpountz.lz4", "unused"),
   "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion,
   // --------------------------------------------------------
-
   "org.mongodb.spark" %% "mongo-spark-connector" % "2.2.0",
   "org.apache.kudu" %% "kudu-spark2" % "1.7.0",
   "com.alibaba" % "QLExpress" % "3.2.0",
@@ -53,15 +50,15 @@ libraryDependencies ++= Seq(
   "com.alibaba" % "druid" % "1.1.10",
   "commons-lang" % "commons-lang" % "2.6",
   "io.thekraken" % "grok" % "0.1.5",
-  "mysql" % "mysql-connector-java" % "5.1.6",
+  "mysql" % "mysql-connector-java" % "5.1.34",
   "org.elasticsearch" % "elasticsearch-spark-20_2.11" % "6.6.1",
   "com.github.scopt" %% "scopt" % "3.7.0",
   "org.apache.commons" % "commons-compress" % "1.15",
   "com.pingcap.tispark" % "tispark-core" % "1.1"
-    excludeAll(ExclusionRule(organization="com.fasterxml.jackson.core")),
+    excludeAll (ExclusionRule(organization = "com.fasterxml.jackson.core")),
   "com.pingcap.tikv" % "tikv-client" % "1.1",
   "ru.yandex.clickhouse" % "clickhouse-jdbc" % "0.1.39"
-    excludeAll(ExclusionRule(organization="com.fasterxml.jackson.core")),
+    excludeAll (ExclusionRule(organization = "com.fasterxml.jackson.core")),
   "com.databricks" %% "spark-xml" % "0.5.0",
   "org.apache.httpcomponents" % "httpasyncclient" % "4.1.3"
 ).map(_.exclude("com.typesafe", "config"))
@@ -77,7 +74,6 @@ resolvers += Resolver.mavenLocal
 javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
-
 
 // automatically check coding style before compile
 scalastyleFailOnError := true
